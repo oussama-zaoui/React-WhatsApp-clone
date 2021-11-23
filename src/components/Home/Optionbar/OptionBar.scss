@@ -1,0 +1,18 @@
+.optionBarContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  Avatar {
+    height: 50px !important;
+    width: 50px !important;
+    object-fit: cover;
+  }
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

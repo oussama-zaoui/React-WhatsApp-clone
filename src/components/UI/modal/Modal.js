@@ -4,7 +4,7 @@ import './Modal.scss';
 
 
 
-function Backdrop(props) {
+function Backdrop() {
     
     return <div className="backdrop" />;
   }
