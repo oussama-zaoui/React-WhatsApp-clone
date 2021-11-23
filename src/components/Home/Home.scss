@@ -1,21 +1,31 @@
 .card {
   display: flex;
-  align-items: center;
-  padding: 10px;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  background-color: #f8f9fa;
 }
 
 .left {
-  width: 700px;
+  flex: 0.35;
 }
 
 .right {
-  width: 100%;
   display: flex;
   flex-direction: column;
+  flex: 0.65;
   align-items: center;
   justify-content: center;
+  img {
+    margin-bottom: 50px;
+  }
   span {
-    font-size: 36px;
+    font-size: 40px;
     color: gray;
+    margin-bottom: 20px;
+  }
+  div {
+    color: gray;
+    font-size: 18px;
+    margin-bottom: 5px;
   }
 }

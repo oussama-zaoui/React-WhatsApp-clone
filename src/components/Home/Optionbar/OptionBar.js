@@ -6,7 +6,7 @@ import './OptionBar.scss';
 function OptionBar(props) {
     return (
         <div className="optionBarContainer">
-            <Avatar />
+            <Avatar className='avatar' />
             <div className="options">
                 <DataSaverOff />
                 <Chat />
