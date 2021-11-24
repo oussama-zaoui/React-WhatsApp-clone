@@ -1,11 +1,15 @@
 import { ArrowDropDown } from '@mui/icons-material';
 import { Avatar } from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import './User.scss';
 
-function User({username,image,time,onClick}) {
+function User({username,image,time,onClick,id}) {
+    const exceute=()=>{
+        onClick(id)
+    }
     return (
-        <div className='userContainer' onClick={onClick}>
+        <div className='userContainer' onClick={exceute}>
             <div className='userLeft'>
             <Avatar className='userAvatar' src={image}/> 
             <div>

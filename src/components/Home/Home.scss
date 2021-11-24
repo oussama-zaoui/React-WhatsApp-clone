@@ -1,12 +1,16 @@
 .card {
   display: flex;
   align-items: flex-start;
-  padding-bottom: 20px;
+  max-width: 1500px;
+  height: 80%;
+  max-height: 1000px;
+  box-sizing: border-box;
   background-color: #f8f9fa;
 }
 
 .left {
   flex: 0.35;
+  overflow-y: hidden;
 }
 
 .right {
@@ -15,6 +19,8 @@
   flex: 0.65;
   align-items: center;
   justify-content: center;
+  transform: translateY(50%);
+
   img {
     margin-bottom: 50px;
   }

@@ -1,0 +1,33 @@
+.bottom {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 8px;
+  div {
+    flex: 0.9;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+
+    input {
+      flex: 0.8;
+      border: none;
+      outline: none;
+      margin-left: 5px;
+      font-size: 18px;
+      background-color: transparent;
+    }
+    svg {
+      width: 28px;
+      height: 28px;
+      margin-left: 5px;
+      color: gray;
+    }
+  }
+  svg {
+    width: 28px;
+    height: 28px;
+    color: gray;
+  }
+}
