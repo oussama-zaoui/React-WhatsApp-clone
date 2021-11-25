@@ -7,6 +7,7 @@ import Discussion from './Discussion/Discussion';
 import User from './User/User';
 import { useDispatch, useSelector } from 'react-redux';
 import {GET_USERS,CLEARE_USERS} from '../../store/store'
+require('dotenv').config();
 
 
 function Home(props) {
@@ -27,7 +28,8 @@ function Home(props) {
         dispatch({type:CLEARE_USERS})
         setIsLoading(true)
         try{
-            const response=await fetch('https://882c-41-97-76-69.ngrok.io/users')
+            const response=await fetch(`https://87fe-41-98-107-25.ngrok.io/users`)
+            console.log('environement variables',process.env.API_URL)
             if(!response.ok){
                 throw new Error("could not fetch users correctly")
             }
