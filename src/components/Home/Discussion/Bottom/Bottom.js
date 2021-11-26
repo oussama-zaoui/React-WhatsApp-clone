@@ -2,18 +2,23 @@ import { AttachFile, InsertEmoticon, KeyboardVoice, Send } from '@mui/icons-mate
 import React, { useState,useEffect } from 'react';
 import './Bottom.scss';
 import { io } from 'socket.io-client';
+import { ALL_MESSAGES, CURRENT_USER } from '../../../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
 
 
-const SERVER='https://87fe-41-98-107-25.ngrok.io'
+const SERVER='https://d796-41-96-32-68.ngrok.io'
 function Bottom(props) {
     const [isTyping,setIsTyping]=useState(false);
     const [messageInputValue,setMessageInputValue]=useState('')
     const [socket, setSocket] = useState(null);
+    const roomState=useSelector((state)=>state.roomState)
+    const dispatch=useDispatch();
+   
 
     useEffect(() => {
       const newSocket = io(SERVER);
       setSocket(newSocket);
-      return () => newSocket.close();
+      //return () => newSocket.close();
     }, [setSocket]);
     const messageInputHandler=(e)=>{
         setMessageInputValue(e.target.value)
@@ -26,8 +31,15 @@ function Bottom(props) {
     }
     
     const sendMessage=async()=>{
-        console.log('chekla')
-      socket.emit('message',messageInputValue)
+      socket.emit('currentRoom',roomState)
+      const messageBundle={owner:roomState.currentUserId,content:messageInputValue, date:new Date()}
+      socket.emit('message',messageBundle,socket.id)
+      dispatch({type:ALL_MESSAGES,data:messageBundle})
+      socket.on('recive',(message)=>{
+        dispatch({type:ALL_MESSAGES,data:message})
+            console.log(message)
+      })
+    
     }
     return (
         <div className='bottom'>

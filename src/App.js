@@ -1,10 +1,22 @@
 
 import './App.scss';
 import Home from './components/Home/Home';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import Login from './components/Login';
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <Routes>
+        <Route exact path='/' element={ <Login/>}>
+          
+        </Route>
+        <Route exact path='/home' element={  <div className="App">
       <Home /> 
     <div className="appBar" >
       <div className='logoContainer'>
@@ -13,7 +25,13 @@ function App() {
       </div>
     
     </div>
-    </div>
+    </div>}>
+      
+        </Route>
+      </Routes>
+     
+    </Router>
+    
   );
 }
 

@@ -6,7 +6,7 @@ import Image from '../../assets/telephone.png'
 import Discussion from './Discussion/Discussion';
 import User from './User/User';
 import { useDispatch, useSelector } from 'react-redux';
-import {GET_USERS,CLEARE_USERS} from '../../store/store'
+import {GET_USERS,CLEARE_USERS, SET_CHOOSEN_ID} from '../../store/store'
 require('dotenv').config();
 
 
@@ -14,12 +14,15 @@ function Home(props) {
     const[discussionClicked,setDiscussionClicked]=useState(false);
     const [isLoading,setIsLoading]=useState(false)
     const  [error,setError]=useState('')
-    const [choosenId,setChoosenId]=useState('')
+   // const [choosenId,setChoosenId]=useState('')
     const userState=useSelector((state)=>state.getUsersState)
+    const roomState=useSelector((state)=>state.roomState)
+    const {currentUserId}=roomState;
     const dispatch=useDispatch()
     const discussionClickHandler=(id)=>{
         console.log("this is id :", id)
-        setChoosenId(id)
+        dispatch({type:SET_CHOOSEN_ID,data:id})
+        //setChoosenId(id)
         setDiscussionClicked(true)
         
     }
@@ -28,7 +31,7 @@ function Home(props) {
         dispatch({type:CLEARE_USERS})
         setIsLoading(true)
         try{
-            const response=await fetch(`https://87fe-41-98-107-25.ngrok.io/users`)
+            const response=await fetch(`https://d796-41-96-32-68.ngrok.io/users/${currentUserId}`)
             console.log('environement variables',process.env.API_URL)
             if(!response.ok){
                 throw new Error("could not fetch users correctly")
@@ -57,7 +60,7 @@ function Home(props) {
                     <User onClick={discussionClickHandler} username=" Salim" image="https://images.unsplash.com/photo-1530268729831-4b0b9e170218?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"/>
                     {isLoading ? <h2>loading...</h2> : error ? <h2>{error}</h2> : userState.map((user)=><User key={user._id} id={user._id} onClick={discussionClickHandler} username={user.name} />)}
                  </div>
-                 {discussionClicked ? <Discussion choosenId={choosenId} /> :   <div className='right'>
+                 {discussionClicked ? <Discussion  /> :   <div className='right'>
                      <img src={Image} alt='' />
                      <span>Gardez votre Telephone connecté </span>
                      <div>WhatsApp se connecte à votre téléphone pour synchroniser les messages. Pour réduire </div>

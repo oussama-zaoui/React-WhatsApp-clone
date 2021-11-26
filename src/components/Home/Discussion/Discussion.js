@@ -3,21 +3,26 @@ import './Discussion.scss';
 import Header from './Header/Header';
 import Middle from './Middle/Middle';
 import Bottom from './Bottom/Bottom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { ALL_MESSAGES } from '../../../store/store';
 
 
-function Discussion({choosenId}) {
+function Discussion() {
     const userState=useSelector((state)=>state.getUsersState)
-    const currentUserId=101;
-    let messages=[]
+    const dispatch=useDispatch();
+    
+    const roomState=useSelector((state)=>state.roomState);
+    const {currentUserId,choosenId}=roomState
     const fetchDiscussion=useCallback(async()=>{
-            const response =await fetch(`https://87fe-41-98-107-25.ngrok.io/findDiscussion/${currentUserId}/${choosenId}`)
+        console.log('this is current userId ',currentUserId)
+            const response =await fetch(`https://d796-41-96-32-68.ngrok.io/findDiscussion/${currentUserId}/${choosenId}`)
             if(!response.ok){
                 throw new Error('could not fetch')
             }
             const data=await response.json()
             if(!data) return ;
-             messages=data.messages;
+            console.log(data)
+             dispatch({type:ALL_MESSAGES,data:data.messages})
     },[])
     
     useEffect(()=>{
@@ -29,7 +34,7 @@ function Discussion({choosenId}) {
     return (
         <div className="discussion">
             <Header name={name} />
-            <Middle  messages={messages}/>
+            <Middle  />
             <Bottom />
         </div>
     );
