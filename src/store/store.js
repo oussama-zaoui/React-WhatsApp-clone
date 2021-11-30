@@ -8,6 +8,8 @@ export const GET_USERS='getUsers';
 export const CLEARE_USERS='cleare_users';
 export const ALL_MESSAGES='all_messages';
 export const SET_CHOOSEN_ID='setChoosenId';
+export const MEMBERS='members';
+export const CLEARE_MESSAGES='cleareMessages'
 
 const initialUsersState=[];
 const initilMessageState=[];
@@ -49,13 +51,21 @@ const messagesReducer=(state=initilMessageState,action)=>{
     if(action.type===ALL_MESSAGES){
         return state.concat(action.data)
     }
+    if(action.type===CLEARE_MESSAGES){
+        return []
+    }
 
     return state;
 }
 
+const  membersReducer=(state=[],action)=>{
+if(action.type===MEMBERS){
+    return action.data
+}
+return state
+}
 
-
-const rootReducer=combineReducers({getUsersState:getUsersReducer,roomState:roomReducer,messageState:messagesReducer})
+const rootReducer=combineReducers({getUsersState:getUsersReducer,roomState:roomReducer,messageState:messagesReducer,membersState:membersReducer})
 
 const store=createStore(rootReducer);
 

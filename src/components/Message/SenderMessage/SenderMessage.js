@@ -3,8 +3,8 @@ import './SenderMessage.scss';
 
 function SenderMessage({content}) {
     return (
-        <div className='messageContainer'>
-            <span className='message'>{content}</span> 
+        <div className='senderContainer'>
+            <span className="senderMessage">{content}</span> 
             
         </div>
     );

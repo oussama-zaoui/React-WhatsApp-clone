@@ -6,12 +6,13 @@ import Image from '../../assets/telephone.png'
 import Discussion from './Discussion/Discussion';
 import User from './User/User';
 import { useDispatch, useSelector } from 'react-redux';
-import {GET_USERS,CLEARE_USERS, SET_CHOOSEN_ID} from '../../store/store'
+import {GET_USERS,CLEARE_USERS, SET_CHOOSEN_ID, MEMBERS, ALL_MESSAGES,CLEARE_MESSAGES} from '../../store/store'
 require('dotenv').config();
 
 
 function Home(props) {
     const[discussionClicked,setDiscussionClicked]=useState(false);
+    const URL='https://9441-41-97-27-231.ngrok.io';
     const [isLoading,setIsLoading]=useState(false)
     const  [error,setError]=useState('')
    // const [choosenId,setChoosenId]=useState('')
@@ -19,19 +20,36 @@ function Home(props) {
     const roomState=useSelector((state)=>state.roomState)
     const {currentUserId}=roomState;
     const dispatch=useDispatch()
+    
     const discussionClickHandler=(id)=>{
-        console.log("this is id :", id)
+        //console.log("this is id :", id)
         dispatch({type:SET_CHOOSEN_ID,data:id})
         //setChoosenId(id)
         setDiscussionClicked(true)
+        fetchDisscussion(id)
         
+    }
+
+   const  fetchDisscussion=async(choosenId)=>{
+    debugger
+    dispatch({type:CLEARE_MESSAGES})
+    console.log('this is current userId ',currentUserId)
+        const response =await fetch(`${URL}/findDiscussion/${currentUserId}/${choosenId}`)
+        if(!response.ok){
+            throw new Error('could not fetch')
+        }
+        const data=await response.json()
+        if(!data) return ;
+        console.log(data)
+         dispatch({type:MEMBERS,data:data.members})
+         dispatch({type:ALL_MESSAGES,data:data.messages})
     }
 
     const fetchUsers=useCallback(async()=>{
         dispatch({type:CLEARE_USERS})
         setIsLoading(true)
         try{
-            const response=await fetch(`https://d796-41-96-32-68.ngrok.io/users/${currentUserId}`)
+            const response=await fetch(`${URL}/users/${currentUserId}`)
             console.log('environement variables',process.env.API_URL)
             if(!response.ok){
                 throw new Error("could not fetch users correctly")
@@ -43,7 +61,7 @@ function Home(props) {
             setError(error)
             console.log(error)
         }
-    },[])
+    },[dispatch,currentUserId])
  
    
     useEffect(()=>{
