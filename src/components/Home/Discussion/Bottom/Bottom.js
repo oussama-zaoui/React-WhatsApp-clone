@@ -6,7 +6,7 @@ import { ALL_MESSAGES } from '../../../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const SERVER='https://9441-41-97-27-231.ngrok.io'
+const SERVER='https://dbca-41-97-27-231.ngrok.io'
 function Bottom(props) {
     const [isTyping,setIsTyping]=useState(false);
     const [messageInputValue,setMessageInputValue]=useState('')
@@ -29,6 +29,11 @@ function Bottom(props) {
             }else
             setIsTyping(false)
 
+    }
+    const onkeypressHandler=(e)=>{
+        if(e.key==='Enter'){
+            sendMessage()
+        }
     }
 
     const reciveMessage=useCallback(async()=>{
@@ -64,7 +69,7 @@ function Bottom(props) {
             <div>
                 <InsertEmoticon />
                 <AttachFile className='attach' />
-                <input placeholder="write message" value={messageInputValue} onChange={messageInputHandler} />
+                <input placeholder="write message" value={messageInputValue} onChange={messageInputHandler} onKeyPress={onkeypressHandler} />
             </div>
             {isTyping ? <Send onClick={sendMessage} /> :  <KeyboardVoice />}
            

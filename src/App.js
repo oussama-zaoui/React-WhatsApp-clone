@@ -1,21 +1,27 @@
-
+import React , { Suspense } from 'react';
 import './App.scss';
-import Home from './components/Home/Home';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import Login from './components/Login';
+
+const Home=React.lazy(()=>import('./components/Home/Home'))
+const Login=React.lazy(()=>import('./components/Login'))
+
+
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path='/' element={ <Login/>}>
+        <Route exact path='/' element={ <Suspense fallback={<h2>Loading</h2>}>
+          <Login />
+        </Suspense>}>
           
         </Route>
-        <Route exact path='/home' element={  <div className="App">
+        <Route exact path='/home' element={<Suspense fallback={<h2>Loading</h2>}>
+        <div className="App">
       <Home /> 
     <div className="appBar" >
       <div className='logoContainer'>
@@ -24,7 +30,8 @@ function App() {
       </div>
     
     </div>
-    </div>}>
+    </div>
+        </Suspense>}>
       
         </Route>
       </Routes>
@@ -35,3 +42,5 @@ function App() {
 }
 
 export default App;
+
+
