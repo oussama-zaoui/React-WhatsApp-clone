@@ -1,0 +1,41 @@
+.headerContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  border-bottom: lightgray solid 0.1px;
+  padding-bottom: 5px;
+}
+
+.headerLeft {
+  display: flex;
+
+  .headerAvatar {
+    height: 60px !important;
+    width: 60px !important;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+  }
+}
+
+.username {
+  font-size: 21px;
+  font-weight: 500;
+  color: black;
+  margin-top: 5px;
+  margin-bottom: 4px;
+}
+
+.headerRight {
+  display: flex;
+  width: 100px;
+  justify-content: space-around;
+  * {
+    width: 35px !important;
+    height: 35px !important;
+  }
+}

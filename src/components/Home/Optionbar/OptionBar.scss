@@ -1,0 +1,24 @@
+.optionBarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ededed;
+  padding: 16px;
+
+  .avatar {
+    height: 60px !important;
+    width: 60px !important;
+  }
+}
+
+.options {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  * {
+    height: 30px;
+    width: 30px;
+    color: black;
+  }
+}

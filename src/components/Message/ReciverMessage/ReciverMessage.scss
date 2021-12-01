@@ -1,0 +1,16 @@
+.reciverContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.reciverMessage {
+  flex: 0.3 !important;
+  background-color: white !important;
+  border-radius: 12px;
+  color: black !important;
+  font-size: 16px !important;
+  padding: 8px !important;
+  margin: 16px;
+}
