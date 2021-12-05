@@ -1,15 +1,14 @@
 .middle {
+  flex: 1;
+  height: 100%;
   width: 100%;
-  height: 68vh;
-}
-
-.messages {
-  width: 100%;
-  height: 68vh;
-  display: flex;
+  overflow-y: scroll;
+  scroll-behavior: auto;
   flex-direction: column;
   justify-content: flex-end;
-  object-fit: cover;
-  overflow: hidden;
   background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+  &::-webkit-scrollbar {
+    display: none;
+    overflow-y: scroll;
+  }
 }

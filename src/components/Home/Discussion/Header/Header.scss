@@ -4,16 +4,17 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 5px;
+  box-sizing: border-box;
   border-bottom: lightgray solid 0.1px;
-  padding-bottom: 5px;
+  padding: 6px 16px;
 }
 
 .headerLeft {
   display: flex;
 
   .headerAvatar {
-    height: 60px !important;
-    width: 60px !important;
+    height: 49px !important;
+    width: 49px !important;
   }
   div {
     display: flex;
@@ -23,7 +24,7 @@
 }
 
 .username {
-  font-size: 21px;
+  font-size: 17px;
   font-weight: 500;
   color: black;
   margin-top: 5px;
@@ -35,7 +36,10 @@
   width: 100px;
   justify-content: space-around;
   * {
-    width: 35px !important;
-    height: 35px !important;
+    width: 30px !important;
+    height: 30px !important;
   }
+}
+.lastSeen {
+  font-size: 14px;
 }
