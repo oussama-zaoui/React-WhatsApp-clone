@@ -14,7 +14,7 @@ function Login(props) {
     }
     const submitHandler=async()=>{
             try{
-                    const response = await fetch(`https://dbca-41-97-27-231.ngrok.io/findUser/${username}`)
+                    const response = await fetch(`https://a8f7-41-97-61-205.ngrok.io/findUser/${username}`)
                     if(!response.ok){
                         throw new Error('error')
                     }

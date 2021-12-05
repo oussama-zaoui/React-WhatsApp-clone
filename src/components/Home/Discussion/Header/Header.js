@@ -10,7 +10,7 @@ function Header({name}) {
         <Avatar className='headerAvatar'/> 
         <div >
             <span className="username">{!name ? 'flenn' : name }</span>
-            <span>last seen at 17:50</span>
+            <span className='lastSeen'>last seen at 17:50</span>
             </div>   
         </div>
                <div className='headerRight'>
