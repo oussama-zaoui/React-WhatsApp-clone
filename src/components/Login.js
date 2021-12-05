@@ -6,26 +6,26 @@ import { CURRENT_USER } from '../store/store';
 import './Login.scss';
 
 function Login(props) {
-    const [username,setUsername]=useState('');
-    const dispatch=useDispatch();
-    const navigate=useNavigate()
-    const usernameChangeHandler=(e)=>{
-            setUsername(e.target.value)
+    const [username, setUsername] = useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const usernameChangeHandler = (e) => {
+        setUsername(e.target.value)
     }
-    const submitHandler=async()=>{
-            try{
-                    const response = await fetch(`https://a8f7-41-97-61-205.ngrok.io/findUser/${username}`)
-                    if(!response.ok){
-                        throw new Error('error')
-                    }
-                    const data=await response.json()
-                    if(data){
-                        dispatch({type:CURRENT_USER,data: data._id})
-                        navigate('/home')
-                    }
-            }catch(e){
-                console.log(e)
+    const submitHandler = async () => {
+        try {
+            const response = await fetch(`https://6192-41-97-61-205.ngrok.io/findUser/${username}`)
+            if (!response.ok) {
+                throw new Error('error')
             }
+            const data = await response.json()
+            if (data) {
+                dispatch({ type: CURRENT_USER, data: data._id })
+                navigate('/home')
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
     return (
         <div>

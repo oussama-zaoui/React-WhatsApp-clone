@@ -1,68 +1,68 @@
 import { AttachFile, InsertEmoticon, KeyboardVoice, Send } from '@mui/icons-material';
-import React, { useState,useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Bottom.scss';
 import { io } from 'socket.io-client';
 import { ALL_MESSAGES } from '../../../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const SERVER='https://a8f7-41-97-61-205.ngrok.io'
+const SERVER = 'https://6192-41-97-61-205.ngrok.io'
 function Bottom(props) {
-    const [isTyping,setIsTyping]=useState(false);
-    const [messageInputValue,setMessageInputValue]=useState('')
+    const [isTyping, setIsTyping] = useState(false);
+    const [messageInputValue, setMessageInputValue] = useState('')
     const [socket, setSocket] = useState(null);
-    const roomState=useSelector((state)=>state.roomState)
-    const dispatch=useDispatch();
-   
+    const roomState = useSelector((state) => state.roomState)
+    const dispatch = useDispatch();
+
     useEffect(() => {
         const newSocket = io(SERVER);
         setSocket(newSocket);
-      return function cleanup() {
-        newSocket.disconnect()
-    }
+        return function cleanup() {
+            newSocket.disconnect()
+        }
     }, [setSocket]);
-    const messageInputHandler=(e)=>{
+    const messageInputHandler = (e) => {
         setMessageInputValue(e.target.value)
-            if(e.target.value.length>0){
-                setIsTyping(true)
-                
-            }else
+        if (e.target.value.length > 0) {
+            setIsTyping(true)
+
+        } else
             setIsTyping(false)
 
     }
-    const onkeypressHandler=(e)=>{
-        if(e.key==='Enter'){
+    const onkeypressHandler = (e) => {
+        if (e.key === 'Enter') {
             sendMessage()
         }
     }
 
-    const reciveMessage=useCallback(async()=>{
+    const reciveMessage = useCallback(async () => {
         debugger
-        if(socket)
-        socket.on('recive',(message)=>{
-            if(message){
-                dispatch({type:ALL_MESSAGES,data:message})
-            }
-            
-            //console.log(message)
-          })
-    },[dispatch,socket])
+        if (socket)
+            socket.on('recive', (message) => {
+                if (message) {
+                    dispatch({ type: ALL_MESSAGES, data: message })
+                }
 
-    useEffect(()=>{
+                //console.log(message)
+            })
+    }, [dispatch, socket])
+
+    useEffect(() => {
         reciveMessage()
-    },[reciveMessage])
+    }, [reciveMessage])
 
 
-    
-    const sendMessage=async()=>{
+
+    const sendMessage = async () => {
         debugger
-      socket.emit('currentRoom',roomState)
-      const messageBundle={owner:roomState.currentUserId,content:messageInputValue, date:new Date()}
-      socket.emit('message',messageBundle,socket.id)
-      dispatch({type:ALL_MESSAGES,data:messageBundle})
-      setMessageInputValue('')
+        socket.emit('currentRoom', roomState)
+        const messageBundle = { owner: roomState.currentUserId, content: messageInputValue, date: new Date() }
+        socket.emit('message', messageBundle, socket.id)
+        dispatch({ type: ALL_MESSAGES, data: messageBundle })
+        setMessageInputValue('')
 
-    
+
     }
     return (
         <div className='bottom'>
@@ -71,8 +71,8 @@ function Bottom(props) {
                 <AttachFile className='attach' />
                 <input placeholder="write message" value={messageInputValue} onChange={messageInputHandler} onKeyPress={onkeypressHandler} />
             </div>
-            {isTyping ? <Send onClick={sendMessage} /> :  <KeyboardVoice />}
-           
+            {isTyping ? <Send onClick={sendMessage} /> : <KeyboardVoice />}
+
         </div>
     );
 }
