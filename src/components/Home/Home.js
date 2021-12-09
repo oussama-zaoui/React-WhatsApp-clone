@@ -12,7 +12,7 @@ require('dotenv').config();
 
 function Home(props) {
     const [discussionClicked, setDiscussionClicked] = useState(false);
-    const URL = 'https://6192-41-97-61-205.ngrok.io';
+    const URL = 'https://33f7-41-96-90-50.ngrok.io';
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
     // const [choosenId,setChoosenId]=useState('')

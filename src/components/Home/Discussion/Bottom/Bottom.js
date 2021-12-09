@@ -6,7 +6,7 @@ import { ALL_MESSAGES } from '../../../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const SERVER = 'https://6192-41-97-61-205.ngrok.io'
+const SERVER = 'https://33f7-41-96-90-50.ngrok.io'
 function Bottom(props) {
     const [isTyping, setIsTyping] = useState(false);
     const [messageInputValue, setMessageInputValue] = useState('')
