@@ -14,7 +14,7 @@ function Login(props) {
     }
     const submitHandler = async () => {
         try {
-            const response = await fetch(`https://33f7-41-96-90-50.ngrok.io/findUser/${username}`)
+            const response = await fetch(`https://whatussop.herokuapp.com/findUser/${username}`)
             if (!response.ok) {
                 throw new Error('error')
             }

@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import Message from '../../../Message/Message';
-import ReciverMessage from '../../../Message/ReciverMessage/ReciverMessage';
-import SenderMessage from '../../../Message/SenderMessage/SenderMessage';
 import './Middle.scss';
 
 function Middle(props) {
@@ -20,7 +18,7 @@ function Middle(props) {
     const generateMessages = () => (
         messageState.map((message, index) => (
 
-            <Message reference={index + 1 === messageState.length ? lastRef : null} content={message.content} isOwner={message.owner === currentUserId} />
+            <Message reference={index + 1 === messageState.length ? lastRef : null} content={message.content} isOwner={message.owner === currentUserId} isReciver={message.owner === choosenId} />
 
             // if (message.owner === currentUserId) {
             //     // if (messageState.length === currentIndex) {

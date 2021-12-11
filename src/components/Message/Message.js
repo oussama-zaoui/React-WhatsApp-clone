@@ -1,12 +1,14 @@
 import React from 'react';
 import './Message.scss';
 
-function Message({ content, reference, isOwner }) {
+function Message({ content, reference, isOwner, isReciver }) {
 
 
 
     return (<div ref={reference} className='messageContainer'>
-        <span className={isOwner ? "sender" : "reciver"}>{content}</span>
+        {isOwner && <span className='sender'>{content}</span>}
+        {isReciver && <span className='reciver'>{content}</span>}
+
 
     </div>)
 

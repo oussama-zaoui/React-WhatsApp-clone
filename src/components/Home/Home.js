@@ -12,7 +12,7 @@ require('dotenv').config();
 
 function Home(props) {
     const [discussionClicked, setDiscussionClicked] = useState(false);
-    const URL = 'https://33f7-41-96-90-50.ngrok.io';
+    const URL = 'https://whatussop.herokuapp.com';
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
     // const [choosenId,setChoosenId]=useState('')
@@ -70,7 +70,9 @@ function Home(props) {
     return (
         <Modal>
             <div className="card">
+
                 <div className='left'>
+
                     <OptionBar />
                     <User onClick={discussionClickHandler} username='Charlene nene' image='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80' />
                     <User onClick={discussionClickHandler} username=" Salim" image="https://images.unsplash.com/photo-1530268729831-4b0b9e170218?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" />
@@ -82,8 +84,8 @@ function Home(props) {
                     <div>WhatsApp se connecte à votre téléphone pour synchroniser les messages. Pour réduire </div>
                     <div>l'utilisation de données, connectez votre téléphone à un réseau Wi-Fi.</div>
                 </div>}
-            </div>
-        </Modal>
+            </div >
+        </Modal >
     );
 }
 
