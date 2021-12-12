@@ -8,7 +8,8 @@ function Middle(props) {
     const messageState = useSelector((state) => state.messageState)
     const roomState = useSelector((state) => state.roomState)
     const lastRef = useRef(null)
-    const { currentUserId, choosenId } = roomState
+    const { choosenId } = roomState
+    const currentUserId = localStorage.getItem('currentUser')
     console.log(choosenId, membersState)
 
     useEffect(() => {

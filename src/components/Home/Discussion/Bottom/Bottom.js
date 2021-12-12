@@ -14,6 +14,7 @@ function Bottom(props) {
     const [messageInputValue, setMessageInputValue] = useState('')
     const [socket, setSocket] = useState(null);
     const roomState = useSelector((state) => state.roomState)
+    const currentUserId = localStorage.getItem('currentUser')
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -59,9 +60,14 @@ function Bottom(props) {
     const sendMessage = async () => {
         debugger
         socket.emit('currentRoom', roomState)
-        const messageBundle = { owner: roomState.currentUserId, content: messageInputValue, date: new Date() }
-        socket.emit('message', messageBundle, socket.id)
-        dispatch({ type: ALL_MESSAGES, data: messageBundle })
+        let messageBundle = null
+        if (messageInputValue)
+            messageBundle = { owner: currentUserId, content: messageInputValue, date: new Date() }
+        if (messageBundle) {
+            socket.emit('message', messageBundle, socket.id)
+            dispatch({ type: ALL_MESSAGES, data: messageBundle })
+        }
+
         setMessageInputValue('')
 
 
