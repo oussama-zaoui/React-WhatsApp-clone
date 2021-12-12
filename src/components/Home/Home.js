@@ -24,8 +24,9 @@ function Home(props) {
 
     const discussionClickHandler = (id) => {
         //console.log("this is id :", id)
-        dispatch({ type: SET_CHOOSEN_ID, data: id })
+        //dispatch({ type: SET_CHOOSEN_ID, data: id })
         //setChoosenId(id)
+        localStorage.setItem('choosenId')
         setDiscussionClicked(true)
         fetchDisscussion(id)
 
