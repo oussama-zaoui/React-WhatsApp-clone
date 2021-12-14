@@ -6,9 +6,10 @@ import './Middle.scss';
 function Middle(props) {
     const membersState = useSelector((state) => state.membersState)
     const messageState = useSelector((state) => state.messageState)
-    const roomState = useSelector((state) => state.roomState)
+    //const roomState = useSelector((state) => state.roomState)
     const lastRef = useRef(null)
-    const { currentUserId, choosenId } = roomState
+    const choosenId = localStorage.getItem('choosenId')
+    const currentUserId = localStorage.getItem('currentUser')
     console.log(choosenId, membersState)
 
     useEffect(() => {

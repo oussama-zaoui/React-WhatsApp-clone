@@ -17,14 +17,16 @@ function Home(props) {
     const [error, setError] = useState('')
     // const [choosenId,setChoosenId]=useState('')
     const userState = useSelector((state) => state.getUsersState)
-    const roomState = useSelector((state) => state.roomState)
-    const { currentUserId } = roomState;
+
+    //const { currentUserId } = roomState;
+    const currentUserId = localStorage.getItem('currentUser')
     const dispatch = useDispatch()
 
     const discussionClickHandler = (id) => {
         //console.log("this is id :", id)
         dispatch({ type: SET_CHOOSEN_ID, data: id })
         //setChoosenId(id)
+        localStorage.setItem('choosenId', id)
         setDiscussionClicked(true)
         fetchDisscussion(id)
 
@@ -74,8 +76,8 @@ function Home(props) {
                 <div className='left'>
 
                     <OptionBar />
-                    <User onClick={discussionClickHandler} username='Charlene nene' image='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80' />
-                    <User onClick={discussionClickHandler} username=" Salim" image="https://images.unsplash.com/photo-1530268729831-4b0b9e170218?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" />
+                    <User username='Charlene nene' image='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80' />
+                    <User username=" Salim" image="https://images.unsplash.com/photo-1530268729831-4b0b9e170218?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" />
                     {isLoading ? <h2>loading...</h2> : error ? <h2>{error}</h2> : userState.map((user) => <User key={user._id} id={user._id} onClick={discussionClickHandler} username={user.name} />)}
                 </div>
                 {discussionClicked ? <Discussion /> : <div className='right'>
