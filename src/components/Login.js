@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { CURRENT_USER } from '../store/store';
 
 
 import './Login.scss';
 
 function Login(props) {
     const [username, setUsername] = useState('');
-
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const usernameChangeHandler = (e) => {
         setUsername(e.target.value)
@@ -20,7 +22,7 @@ function Login(props) {
             }
             const data = await response.json()
             if (data) {
-                //dispatch({ type: CURRENT_USER, data: data._id })
+                dispatch({ type: CURRENT_USER, data: data._id })
                 localStorage.setItem('currentUser', data._id)
                 navigate('/home')
             }

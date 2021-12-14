@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './Bottom.scss';
 import { io } from 'socket.io-client';
 import { ALL_MESSAGES } from '../../../../store/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -13,8 +13,9 @@ function Bottom(props) {
     const [isTyping, setIsTyping] = useState(false);
     const [messageInputValue, setMessageInputValue] = useState('')
     const [socket, setSocket] = useState(null);
-    const roomState = useSelector((state) => state.roomState)
-    const currentUserId = localStorage.getItem('currentUser')
+    //const roomState = useSelector((state) => state.roomState)
+    const currentUserId = localStorage.getItem('currentUser');
+    const choosenId = localStorage.getItem('choosenId')
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -58,7 +59,8 @@ function Bottom(props) {
 
 
     const sendMessage = async () => {
-        debugger
+
+        const roomState = { currentUserId, choosenId }
         socket.emit('currentRoom', roomState)
         let messageBundle = null
         if (messageInputValue)
