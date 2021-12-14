@@ -1,0 +1,46 @@
+@import "colors";
+
+.appBar {
+  height: 250px;
+  width: 100%;
+  background-color: $appBarColor;
+
+  .searchBar {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    input {
+      border-radius: 25px;
+      border: none;
+      font-size: 17px;
+      padding: 8px;
+      width: 35%;
+      outline: none;
+    }
+    button {
+      background-color: $appBarColor;
+      border-radius: 25px;
+      font-size: 16px;
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 8px 16px;
+      margin-left: 10px;
+      border: 2px solid white;
+    }
+  }
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 300px;
+  padding-top: 30px;
+  span {
+    color: $globalBackGround;
+    font-weight: 400;
+    font-size: 25px;
+  }
+}
