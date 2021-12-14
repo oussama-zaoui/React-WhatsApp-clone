@@ -6,6 +6,7 @@ import { CURRENT_USER } from '../store/store';
 
 
 import './Login.scss';
+import Backdrop from './Backdrop/Backdrop';
 
 function Login(props) {
     const [username, setUsername] = useState('');
@@ -31,9 +32,12 @@ function Login(props) {
         }
     }
     return (
-        <div>
-            <input type='text' placeholder="username" value={username} onChange={usernameChangeHandler} />
-            <button onClick={submitHandler}>submit</button>
+        <div className='login-container'>
+            <Backdrop >
+                <input type='text' placeholder="username" value={username} onChange={usernameChangeHandler} />
+                <button onClick={submitHandler}>Submit</button>
+            </Backdrop>
+
         </div>
     );
 }
