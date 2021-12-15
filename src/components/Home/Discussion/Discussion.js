@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 function Discussion() {
     const userState = useSelector((state) => state.getUsersState)
     // const roomState = useSelector((state) => state.roomState);
-    const choosenId = localStorage.getItem('choosenId')
+    const choosenId = sessionStorage.getItem('choosenId')
     const user = userState.filter((user) => user._id === choosenId)
     const { name } = user[0];
     console.log(name)

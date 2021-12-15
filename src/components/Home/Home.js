@@ -19,14 +19,14 @@ function Home(props) {
     const userState = useSelector((state) => state.getUsersState)
 
     //const { currentUserId } = roomState;
-    const currentUserId = localStorage.getItem('currentUser')
+    const currentUserId = sessionStorage.getItem('currentUser')
     const dispatch = useDispatch()
 
     const discussionClickHandler = (id) => {
         //console.log("this is id :", id)
         dispatch({ type: SET_CHOOSEN_ID, data: id })
         //setChoosenId(id)
-        localStorage.setItem('choosenId', id)
+        sessionStorage.setItem('choosenId', id)
         setDiscussionClicked(true)
         fetchDisscussion(id)
 
