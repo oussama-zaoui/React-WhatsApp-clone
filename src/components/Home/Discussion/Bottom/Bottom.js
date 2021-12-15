@@ -14,8 +14,8 @@ function Bottom(props) {
     const [messageInputValue, setMessageInputValue] = useState('')
     const [socket, setSocket] = useState(null);
     //const roomState = useSelector((state) => state.roomState)
-    const currentUserId = localStorage.getItem('currentUser');
-    const choosenId = localStorage.getItem('choosenId')
+    const currentUserId = sessionStorage.getItem('currentUser');
+    const choosenId = sessionStorage.getItem('choosenId')
     const dispatch = useDispatch();
 
     useEffect(() => {
