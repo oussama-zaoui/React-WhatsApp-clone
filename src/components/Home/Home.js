@@ -13,7 +13,7 @@ require('dotenv').config();
 function Home(props) {
     const [username, setUsername] = useState('');
     const [discussionClicked, setDiscussionClicked] = useState(false);
-    const URL = 'https://whatussop.herokuapp.com/';
+    const URL = 'https://whatussop.herokuapp.com';
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
     // const [choosenId,setChoosenId]=useState('')
