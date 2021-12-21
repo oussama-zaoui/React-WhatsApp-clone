@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 
 
 
-const SERVER = 'http://localhost:5000'
+const SERVER = 'https://whatussop.herokuapp.com/'
 
 function Bottom(props) {
     const [isTyping, setIsTyping] = useState(false);
