@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 
 
 
-const SERVER = 'https://whatussop.herokuapp.com/'
+const SERVER = 'http://localhost:5000'
 
 function Bottom(props) {
     const [isTyping, setIsTyping] = useState(false);
@@ -44,13 +44,13 @@ function Bottom(props) {
         debugger
         if (socket)
             socket.on('recive', (message) => {
-                if (message) {
+                if (message && message.to === currentUserId) {
                     dispatch({ type: ALL_MESSAGES, data: message })
                 }
 
                 //console.log(message)
             })
-    }, [dispatch, socket])
+    }, [dispatch, socket, currentUserId])
 
     useEffect(() => {
         reciveMessage()
@@ -64,7 +64,7 @@ function Bottom(props) {
         socket.emit('currentRoom', roomState)
         let messageBundle = null
         if (messageInputValue)
-            messageBundle = { owner: currentUserId, content: messageInputValue, date: new Date() }
+            messageBundle = { owner: currentUserId, content: messageInputValue, to: choosenId, date: new Date() }
         if (messageBundle) {
             socket.emit('message', messageBundle, socket.id)
             dispatch({ type: ALL_MESSAGES, data: messageBundle })

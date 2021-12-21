@@ -3,17 +3,16 @@ import './Discussion.scss';
 import Header from './Header/Header';
 import Middle from './Middle/Middle';
 import Bottom from './Bottom/Bottom';
-import { useSelector } from 'react-redux';
 
 
 
-function Discussion() {
-    const userState = useSelector((state) => state.getUsersState)
+
+function Discussion({ name }) {
+    //const userState = useSelector((state) => state.getUsersState)
     // const roomState = useSelector((state) => state.roomState);
-    const choosenId = sessionStorage.getItem('choosenId')
-    const user = userState.filter((user) => user._id === choosenId)
-    const { name } = user[0];
-    console.log(name)
+    //const choosenId = sessionStorage.getItem('choosenId')
+
+
     debugger
     return (
         <div className="discussion">
