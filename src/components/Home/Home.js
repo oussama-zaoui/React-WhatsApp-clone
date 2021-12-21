@@ -11,8 +11,9 @@ require('dotenv').config();
 
 
 function Home(props) {
+    const [username, setUsername] = useState('');
     const [discussionClicked, setDiscussionClicked] = useState(false);
-    const URL = 'https://whatussop.herokuapp.com';
+    const URL = 'https://whatussop.herokuapp.com/';
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
     // const [choosenId,setChoosenId]=useState('')
@@ -27,6 +28,8 @@ function Home(props) {
         dispatch({ type: SET_CHOOSEN_ID, data: id })
         //setChoosenId(id)
         sessionStorage.setItem('choosenId', id)
+        const user = userState.filter((user) => user._id === id)
+        setUsername(user[0].name)
         setDiscussionClicked(true)
         fetchDisscussion(id)
 
@@ -80,7 +83,7 @@ function Home(props) {
                     <User username=" Salim" image="https://images.unsplash.com/photo-1530268729831-4b0b9e170218?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" />
                     {isLoading ? <h2>loading...</h2> : error ? <h2>{error}</h2> : userState.map((user) => <User key={user._id} id={user._id} onClick={discussionClickHandler} username={user.name} />)}
                 </div>
-                {discussionClicked ? <Discussion /> : <div className='right'>
+                {discussionClicked ? <Discussion name={username} /> : <div className='right'>
                     <img src={Image} alt='' />
                     <span>Gardez votre Telephone connecté </span>
                     <div>WhatsApp se connecte à votre téléphone pour synchroniser les messages. Pour réduire </div>
